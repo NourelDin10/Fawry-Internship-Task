@@ -5,8 +5,11 @@
 mygrep.sh is a simple Bash script that replicates basic grep functionality, supporting:
 
 •	Case-insensitive string search
+
 •	Line numbers (-n option)
+
 •	Invert match (-v option)
+
 •	Combined options like -vn and -nv
 
 ## Usage
@@ -67,4 +70,8 @@ It required careful logic to ensure that:
 •	Matching lines are skipped when inverted.
 
 •	Non-matching lines are printed correctly. Combining this with case-insensitive matching added complexity. 
+
+## ScreenShots
+• in " grep-ScreenShots/ " folder
+
 
