@@ -4,22 +4,25 @@
 
 mygrep.sh is a simple Bash script that replicates basic grep functionality, supporting:
 •	Case-insensitive string search
+
 •	Line numbers (-n option)
+
 •	Invert match (-v option)
+
 •	Combined options like -vn and -nv
 
 ## Usage
 
- • ./mygrep.sh [OPTIONS] search_string filename
+    • ./mygrep.sh [OPTIONS] search_string filename
 
 
 ## Options
 
- •	-n : Show line numbers for matches.
- 
- •	-v : Invert match (show lines that do not match).
- 
- •	Combinations like -vn and -nv are supported.
+    •	-n : Show line numbers for matches.
+    
+    •	-v : Invert match (show lines that do not match).
+    
+    •	Combinations like -vn and -nv are supported.
 
  ## Reflective Section
 
@@ -29,8 +32,10 @@ mygrep.sh is a simple Bash script that replicates basic grep functionality, supp
 •	Internal flags (line_numbers, invert) are set based on options.
 
 •	After parsing options, the script expects exactly two positional arguments:
-   1.	Search pattern
-   2.	File name
+
+   1-	Search pattern
+ 
+   2- File name
 
 •	Input validation checks if the correct number of arguments is provided and if the file exists.
 
@@ -42,20 +47,21 @@ mygrep.sh is a simple Bash script that replicates basic grep functionality, supp
 
 #### 2- If I Were to Support -i / -c / -l Options
 
-•	-i (ignore case):
+• -`i` (ignore case): 
 
 Instead of manually converting text to lowercase, I would modify the comparison to use a regex engine that supports case-insensitive matching like grep -i or add internal flags to skip lowercasing.
 
-•	-c (count matches):
+• `-c` (count matches):
 
 I would introduce a counter to count the number of matched lines and print only the total after processing.
-•	-l (list filenames with matches):
+
+• `-l` (list filenames with matches):
 
 I would track whether any match occurs and then output only the filename if matches are found.
 
-•	Regex Support:
+• Regex Support:
 
-Instead of using simple substring matching (*pattern*), I would switch to using Bash's regex match operator =~ or external tools like grep -E
+Instead of using simple substring matching (pattern), I would switch to using Bash's regex match operator =~ or external tools like grep -E.
 
 #### 3- What Was Hardest to Implement
 
@@ -68,6 +74,7 @@ It required careful logic to ensure that:
 •	Non-matching lines are printed correctly. Combining this with case-insensitive matching added complexity. 
 
 ## ScreenShots
-• in " grep-ScreenShots/ " folder
+• Provided in `"grep-ScreenShots/"`
+
 
 
