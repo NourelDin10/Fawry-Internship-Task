@@ -3,15 +3,10 @@
 ## Task1: Custom Command ( mygrep.sh )
 
 mygrep.sh is a simple Bash script that replicates basic grep functionality, supporting:
-<pre>
 •	Case-insensitive string search
-
 •	Line numbers (-n option)
-
 •	Invert match (-v option)
-
 •	Combined options like -vn and -nv
-<pre>
 
 ## Usage
 
