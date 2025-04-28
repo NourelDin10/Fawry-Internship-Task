@@ -78,3 +78,41 @@ It required careful logic to ensure that:
 
 
 
+# Internal Dashboard Connectivity Troubleshooting
+
+## Problem
+Internal web dashboard (internal.example.com) became unreachable with "host not found" errors.
+
+## Investigation Steps
+Verify DNS Resolution: Compare lookups from /etc/resolv.conf vs. 8.8.8.8.
+Diagnose Service Reachability: Confirm port 80/443 on resolved IP via ss, curl, or telnet.
+Trace the Issue – List All Possible Causes
+Local stub resolver misconfigured
+DNS cache stale on client or resolver
+Missing/incorrect A record in DNS zone
+Firewall blocking HTTP(S) ports
+Service bound only to localhost
+Network route/gateway misconfiguration
+Conflicting /etc/hosts entry
+SELinux/AppArmor blocking connections
+
+## Command Used
+        dig internal.example.com
+        dig @8.8.8.8 internal.example.com
+        curl -v http://internal.example.com
+        telnet internal.example.com
+        sudo netstat -tuln | grep '80\|443'
+        cat /etc/hosts
+        cat /etc/resolv.conf
+        nslookup internal.example.com
+        nslookup internal.example.com 8.8.8.8
+        ping internal.example.com
+
+##Bonus
+/etc/hosts override: echo "10.10.20.30 internal.example.com" | sudo tee -a /etc/hosts
+
+Persist DNS via systemd-resolved: create /etc/systemd/resolved.conf.d/custom.conf with [Resolve]\nDNS=10.0.0.2 
+
+10.0.0.3\nDomains=internal.example.com, then systemctl restart systemd-resolved.
+
+Persist via NetworkManager: nmcli con mod \"Wired\" ipv4.dns \"10.0.0.2 10.0.0.3\" ipv4.ignore-auto-dns yes && nmcli con up \"Wired\"       
